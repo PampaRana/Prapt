@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+
+            <ImageView
+                android:id="@+id/image2"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/image1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/image2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+
+            <ImageView
+                android:id="@+id/image4"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/image3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+
+            <ImageView
+                android:id="@+id/image5"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/image4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@+id/image5"
+                android:id="@+id/addToCart"
+                android:background="@drawable/add_to_card"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="#0862db"
+                android:text="View More"
+                android:layout_width="100dp"
+                android:layout_height="40dp"/>
+            <TextView
+                android:id="@+id/titleName"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="22dp"
+                android:textColor="@color/black"
+                android:text="Vim Dishwash Gel Lemon 500ml"
+                android:layout_below="@+id/image1"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/offerExchange"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="18dp"
+                android:textColor="@color/red"
+                android:text="Offer Expires in 2 days"
+                android:layout_below="@+id/titleName"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/offerText1"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/ic_baseline_percent_24"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:text="Get additional 1% off per unit on order between2 unit and 5 unit"
+                android:layout_below="@+id/offerExchange"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/offerText2"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/ic_baseline_percent_24"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:text="Get additional 1% off per unit on order between2 unit and 5 unit"
+                android:layout_below="@+id/offerText1"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/offerText3"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/ic_baseline_percent_24"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:text="Get additional 1% off per unit on order between2 unit and 5 unit"
+                android:layout_below="@+id/offerText2"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/offerText4"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/ic_baseline_percent_24"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:text="Get additional 1% off per unit on order between2 unit and 5 unit"
+                android:layout_below="@+id/offerText3"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/offerText5"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/ic_baseline_percent_24"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:text="Get additional 1% off per unit on order between2 unit and 5 unit"
+                android:layout_below="@+id/offerText4"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/offerText11"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/ic_baseline_tag_24"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:text="Get additional 1% off per unit on order between2 unit and 5 unit"
+                android:layout_below="@+id/offerText5"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

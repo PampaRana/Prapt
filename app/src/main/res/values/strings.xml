@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Prapt</string>
+    <string name="providers">Providers</string>
+    <string name="blog">Blog</string>
+    <string name="my_classes">My Courses</string>
+    <string name="exit">Exit</string>
+    <string name="exit_desc">Are you sure you want to exit?</string>
+    <string name="ok">OK</string>
+    <string name="login">Login</string>
+    <string name="logout">Log out</string>
+    <string name="logout_desc">Are you sure you want to logout?</string>
+    <string name="home">Home</string>
+    <string name="categories">Categories</string>
+    <string name="offer_zone">Offer Zone</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="damage_expiry">Damage/Expiry</string>
+    <string name="my_cart">My Cart</string>
+    <string name="my_wishlist">My Wishlist</string>
+    <string name="notifications">Notifications</string>
+    <string name="help_center">Help Center</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="legal">Legal</string>
+    <string name="recent_otp">Resend Code</string>
+    <string name="increment">+</string>
+    <string name="decrement">-</string>
+    <string name="display">1</string>
+    <string-array name="array_name">
+        <item>Class</item>
+        <item>Unit</item>
+
+    </string-array>
+</resources>

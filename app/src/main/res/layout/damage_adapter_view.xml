@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/search_edit"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="180dp">
+    <TextView
+        android:id="@+id/statuesId"
+        android:background="@drawable/statues_view"
+        android:layout_marginLeft="15dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:padding="8dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="In Progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_toRightOf="@+id/statuesId"
+        android:id="@+id/nameId"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="10dp"
+        android:text="Sunlight Eb Powder 500g"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:id="@+id/damge_Image"
+        android:layout_below="@+id/statuesId"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+    <TextView
+        android:layout_below="@+id/statuesId"
+        android:id="@+id/typeId"
+        android:layout_toRightOf="@+id/damge_Image"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="8dp"
+        android:text="Type"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/typeData"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="70dp"
+        android:layout_below="@+id/statuesId"
+        android:layout_toRightOf="@+id/typeId"
+        android:layout_marginTop="15dp"
+        android:text=":Damage"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/raisedId"
+        android:layout_toRightOf="@+id/damge_Image"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/typeId"
+        android:layout_marginTop="5dp"
+        android:text="Raised QTY"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/raiseddataId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/typeData"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="0dp"
+        android:layout_toRightOf="@+id/raisedId"
+        android:padding="5dp"
+        android:text=":Damage"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/approverId"
+        android:layout_toRightOf="@+id/damge_Image"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/raisedId"
+        android:layout_marginTop="5dp"
+        android:text="Approved Qty"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/approverDataId"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/raiseddataId"
+        android:layout_toRightOf="@+id/approverId"
+        android:layout_marginTop="5dp"
+        android:text=":Damage"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

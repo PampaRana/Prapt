@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/search_edit"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="160dp">
+     <TextView
+         android:id="@+id/nameId"
+         android:layout_marginTop="15dp"
+         android:layout_marginLeft="8dp"
+         android:text="Enter Name"
+         android:textSize="18dp"
+         android:textStyle="bold"
+         android:padding="5dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/dateId"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBaseline="@+id/nameId"
+        android:layout_marginTop="15dp"
+        android:text="10 Feb"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/itemId"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/nameId"
+        android:layout_marginTop="5dp"
+        android:text="Enter Item"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/amountId"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/itemId"
+        android:layout_marginTop="5dp"
+        android:text="Request Amount"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/statuesId"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBaseline="@+id/amountId"
+        android:background="@drawable/statues_view"
+        android:layout_marginRight="10dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:padding="8dp"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="In Progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
