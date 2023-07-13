@@ -49,7 +49,8 @@ public class BrandActivity extends AppCompatActivity {
         cardId.setText(getIntent().getStringExtra("brand_name"));
         if (InternetCheck.isConnected(this)) {
             showHud();
-            getBrandList(SharedPreferencesClass.retrieveData(this, Config.USER_ID));
+            getBrandList(SharedPreferencesClass.retrieveData(this, Config.USER_ID),
+                    getIntent().getStringExtra("cat_id"));
             getSubCategoryList(SharedPreferencesClass.retrieveData(this, Config.USER_ID),
                     getIntent().getStringExtra("cat_id"));
 
@@ -170,11 +171,11 @@ public class BrandActivity extends AppCompatActivity {
         });
     }
 
-    private void getBrandList(String id) {
+    private void getBrandList(String id, String cat_id) {
         //showHud();
 
         Call<BrandData> call= ApiNewClient.getInstance(this).getBrandList(
-                id
+                id,cat_id
         );
         call.enqueue(new Callback<BrandData>() {
             @Override

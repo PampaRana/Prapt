@@ -95,6 +95,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
         }
         val slideLogInOutBtn = findViewById<MaterialTextView>(R.id.slideLogInOutBtn) as MaterialTextView
         slideLogInOutBtn!!.setOnClickListener {
+            SharedPreferencesClass.clearData(applicationContext)
             SharedPrefManagerLogin.getInstance(applicationContext).logout()
             SharedPrefManagerLoginMach.getInstance(applicationContext).logout()
             val intent = Intent(applicationContext, SecondScreenActivity::class.java)

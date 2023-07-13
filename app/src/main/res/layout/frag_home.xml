@@ -184,8 +184,7 @@
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerview1"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="8dp"
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -232,8 +231,7 @@
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerview2"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="8dp"
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
@@ -282,8 +280,7 @@
                     android:layout_height="wrap_content">
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerview3"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginRight="8dp"
                         android:orientation="horizontal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

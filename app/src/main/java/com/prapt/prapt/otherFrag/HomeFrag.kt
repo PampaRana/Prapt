@@ -4,7 +4,6 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,11 +14,14 @@ import com.prapt.prapt.R
 import com.prapt.prapt.activity.MainActivity
 import com.prapt.prapt.adapter.AdapterCategories
 import com.prapt.prapt.adapter.SliderAdapter
+import com.prapt.prapt.adapter.TopOfferAdapter
 import com.prapt.prapt.adapter.TopPacksAdapter
 import com.prapt.prapt.apiCall.ApiNewClient
 import com.prapt.prapt.databinding.FragHomeBinding
 import com.prapt.prapt.model.banner.BannerData
 import com.prapt.prapt.model.banner.BannerDataDetails
+import com.prapt.prapt.model.topOffer.TopOfferData
+import com.prapt.prapt.model.topOffer.TopOfferDataDetails
 import com.prapt.prapt.pogo.Categories
 import com.prapt.prapt.pogo.Toppacks
 import com.prapt.prapt.utils.App
@@ -61,7 +63,7 @@ class HomeFrag : NetworkObserverFragment(),
     var recyclerview3: RecyclerView? = null
     var categories: List<Categories>? = null
     var homeItemViewAdapter: AdapterCategories? = null
-    var toppacks: List<Toppacks>? = null
+    //var toppacks: List<Toppacks>? = null
     private val sliderHandler: Handler = Handler()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -156,7 +158,14 @@ class HomeFrag : NetworkObserverFragment(),
         val adapter =
             AdapterCategories(context, categories)
         recyclerview?.adapter = adapter
-        toppacks = java.util.ArrayList()
+
+        if (InternetCheck.isConnected(activity)) {
+
+            getTopOfferList()
+        } else {
+            showToastMessage("No internet connection")
+        }
+       /* toppacks = java.util.ArrayList()
         (toppacks as java.util.ArrayList<Toppacks>).add(
             Toppacks(
                 "1",  //"Air Booking",
@@ -175,21 +184,17 @@ class HomeFrag : NetworkObserverFragment(),
                 "3",  //"Air Booking",
                 R.mipmap.image3
             )
-        )
+        )*/
         recyclerview1?.setHasFixedSize(true)
         recyclerview1?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        val adapter1 = TopPacksAdapter(context, toppacks)
-        recyclerview1?.adapter = adapter1
 
         recyclerview2?.setHasFixedSize(true)
         recyclerview2?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        val adapter2 = TopPacksAdapter(context, toppacks)
-        recyclerview2?.adapter = adapter2
 
         recyclerview3?.setHasFixedSize(true)
         recyclerview3?.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        val adapter3 = TopPacksAdapter(context, toppacks)
-        recyclerview3?.adapter = adapter3
+
+
     }
 
     private fun getBannerList() {
@@ -283,5 +288,38 @@ class HomeFrag : NetworkObserverFragment(),
 
         }
     }
+    private fun getTopOfferList() {
+        // showHud();
+        val topOfferList = java.util.ArrayList<TopOfferDataDetails>()
+        val call = ApiNewClient.getInstance(context).getTopOfferList(
+            SharedPreferencesClass.retrieveData(context, Config.USER_ID)
+        )
+        call.enqueue(object : Callback<TopOfferData?> {
+            override fun onResponse(call: Call<TopOfferData?>, response: Response<TopOfferData?>) {
+                hide()
+                if (response.isSuccessful) {
+                    assert(response.body() != null)
+                    if (response.body()!!.success == "true") {
+                        topOfferList.clear()
+                        for (i in response.body()!!.topOfferDataDetails.indices) {
+                            topOfferList.add(response.body()!!.topOfferDataDetails[i])
+                        }
+                       // val adapter = TopOfferAdapter(context, topOfferList)
+                        val adapter1 = TopPacksAdapter(context, topOfferList)
+                        recyclerview1?.adapter = adapter1
 
+                        val adapter2 = TopPacksAdapter(context, topOfferList)
+                        recyclerview2?.adapter = adapter2
+
+                        val adapter3 = TopPacksAdapter(context, topOfferList)
+                        recyclerview3?.adapter = adapter3
+                    } else {
+                        //showToastMessage(response.body().getMessage());
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<TopOfferData?>, t: Throwable) {}
+        })
+    }
 }

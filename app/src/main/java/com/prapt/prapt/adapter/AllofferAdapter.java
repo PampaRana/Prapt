@@ -10,16 +10,22 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.prapt.prapt.model.allOffer.AllOfferDataDetails;
 import com.prapt.prapt.pogo.AllOfferList;
 import com.prapt.prapt.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AllofferAdapter extends RecyclerView.Adapter<AllofferAdapter.ViewHolder> {
         private Context mCtx;
-        private List<AllOfferList> allOfferListList;
+        private ArrayList<AllOfferDataDetails> allOfferListList;
         int listview;
-        public AllofferAdapter(Context mCtx,  List<AllOfferList> allOfferListList) {
+        public AllofferAdapter(Context mCtx,  ArrayList<AllOfferDataDetails> allOfferListList) {
             this.mCtx = mCtx;
             this.allOfferListList = allOfferListList;
         }
@@ -31,19 +37,51 @@ public class AllofferAdapter extends RecyclerView.Adapter<AllofferAdapter.ViewHo
         }
         @Override
         public void onBindViewHolder(final ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-            AllOfferList cat = allOfferListList.get(position);
+            AllOfferDataDetails cat = allOfferListList.get(position);
             listview = position;
-            holder.image1.setImageDrawable(mCtx.getResources().getDrawable(cat.getImage1()));
+
+            Glide.with(mCtx)
+                    .load(cat.getDfile1())
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                           // holder.content_loading_pb.setVisibility(View.GONE);
+                            return false;
+                        }
+                    })
+                    .into(holder.image1)
+            ;
+            holder.titleName.setText(cat.getP_title());
+            if (!cat.getExpires().equalsIgnoreCase("")) {
+                if (Integer.parseInt(cat.getExpires()) > 1) {
+                    holder.offerExchange.setText("Offer Expires in " + cat.getExpires() + " days");
+                } else {
+                    holder.offerExchange.setText("Offer Expires in " + cat.getExpires() + " day");
+
+                }
+            }
+            for (int i=0;i<cat.getAllOfferInfoDetails().size();i++){
+
+                holder.offerText1.setText(
+                        String.join(" ", cat.getAllOfferInfoDetails().get(i).getDetails()) );
+
+            }
+
+            /*holder.image1.setImageDrawable(mCtx.getResources().getDrawable(cat.getImage1()));
             holder.image2.setImageDrawable(mCtx.getResources().getDrawable(cat.getImage2()));
             holder.image3.setImageDrawable(mCtx.getResources().getDrawable(cat.getImage3()));
-            holder.titleName.setText(String.valueOf(cat.getTitle()));
             holder.offerExchange.setText(String.valueOf(cat.getOfferExchange()));
             holder.offerText1.setText(String.valueOf(cat.getOfferText1()));
             holder.offerText2.setText(String.valueOf(cat.getOfferText2()));
             holder.offerText3.setText(String.valueOf(cat.getOfferText3()));
             holder.offerText4.setText(String.valueOf(cat.getOfferText4()));
             holder.offerText5.setText(String.valueOf(cat.getOfferText5()));
-            holder.offerText11.setText(String.valueOf(cat.getOfferText11()));
+            holder.offerText11.setText(String.valueOf(cat.getOfferText11()));*/
 
         }
         @Override

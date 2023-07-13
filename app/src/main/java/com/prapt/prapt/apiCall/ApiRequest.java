@@ -3,9 +3,11 @@ package com.prapt.prapt.apiCall;
 
 import com.prapt.prapt.model.LoginData;
 import com.prapt.prapt.model.SuccessData;
+import com.prapt.prapt.model.allOffer.AllOfferData;
 import com.prapt.prapt.model.banner.BannerData;
 import com.prapt.prapt.model.brand.BrandData;
 import com.prapt.prapt.model.cart.CartData;
+import com.prapt.prapt.model.cart.SuccessIsInCartData;
 import com.prapt.prapt.model.category.CategoryData;
 import com.prapt.prapt.model.product.ProductData;
 import com.prapt.prapt.model.subCategory.SubCategoryData;
@@ -53,6 +55,10 @@ public interface ApiRequest {
                                              @Field("cat_id") String cat_id);
 
     /*===========================Product====================================*/
+    //search-->product_name="cake"
+    //category wise ---> cat_id="12"
+    //sub category wise ---> cat_id="0", sub_cat_id="12"
+    //cat & sub category wise ---> cat_id="12", sub_cat_id="12"
     @FormUrlEncoded
     @POST("get_products")
     Call<ProductData> getProductList(@Field("id") String id,
@@ -64,7 +70,8 @@ public interface ApiRequest {
     /*===========================Brand Product====================================*/
     @FormUrlEncoded
     @POST("get_brands")
-    Call<BrandData> getBrandList(@Field("id") String id);
+    Call<BrandData> getBrandList(@Field("id") String id,
+                                 @Field("cat_id") String cat_id);
 
     /*===========================Brand Wise Product====================================*/
     @FormUrlEncoded
@@ -77,16 +84,6 @@ public interface ApiRequest {
     @FormUrlEncoded
     @POST("add_to_cart_list")
     Call<CartData> getCartList(@Field("id") String id);
-
-    /*===========================Banner Image====================================*/
-    @FormUrlEncoded
-    @POST("banner")
-    Call<BannerData> getBannerList(@Field("id") String id);
-
-    /*===========================Top Offer====================================*/
-    @FormUrlEncoded
-    @POST("top_offers")
-    Call<TopOfferData> getTopOfferList(@Field("id") String id);
 
     /*===========================Add To Cart====================================*/
     @FormUrlEncoded
@@ -101,6 +98,29 @@ public interface ApiRequest {
     @POST("delete_add_to_cart")
     Call<SuccessData> getDeleteCart(@Field("id") String id,
                                     @Field("product_id") String product_id);
+
+    /*===========================Already Product is in Cart or not====================================*/
+    @FormUrlEncoded
+    @POST("is_in_add_to_cart")
+    Call<SuccessIsInCartData> getProductIsInCart(@Field("id") String id,
+                                                 @Field("product_id") String product_id);
+
+    /*===========================Banner Image====================================*/
+    @FormUrlEncoded
+    @POST("banner")
+    Call<BannerData> getBannerList(@Field("id") String id);
+
+    /*===========================Top Offers====================================*/
+    @FormUrlEncoded
+    @POST("top_offers")
+    Call<TopOfferData> getTopOfferList(@Field("id") String id);
+
+    /*===========================All Offer====================================*/
+    @FormUrlEncoded
+    @POST("all_offers")
+    Call<AllOfferData> getAllOfferList(@Field("id") String id);
+
+
 
 
     /*===========================Pin Code Check====================================*/

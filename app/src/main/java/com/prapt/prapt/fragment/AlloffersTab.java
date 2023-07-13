@@ -6,26 +6,42 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
+import com.prapt.prapt.adapter.TopOfferAdapter;
+import com.prapt.prapt.apiCall.ApiNewClient;
 import com.prapt.prapt.interfacelistener.BackButtonHandlerInterface;
 import com.prapt.prapt.interfacelistener.OnBackClickListener;
 import com.prapt.prapt.R;
 import com.prapt.prapt.adapter.AllofferAdapter;
+import com.prapt.prapt.model.allOffer.AllOfferData;
+import com.prapt.prapt.model.allOffer.AllOfferDataDetails;
+import com.prapt.prapt.model.topOffer.TopOfferData;
+import com.prapt.prapt.model.topOffer.TopOfferDataDetails;
 import com.prapt.prapt.pogo.AllOfferList;
+import com.prapt.prapt.utils.Config;
+import com.prapt.prapt.utils.InternetCheck;
+import com.prapt.prapt.utils.SharedPreferencesClass;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AlloffersTab extends Fragment implements OnBackClickListener {
     private BackButtonHandlerInterface backButtonHandler;
     boolean doubleBackToExitPressedOnce = false;
     RecyclerView recyclerView;
-    List<AllOfferList> allOfferListList;
+    //List<AllOfferList> allOfferListList;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -55,7 +71,15 @@ public class AlloffersTab extends Fragment implements OnBackClickListener {
         View rootView = inflater.inflate(R.layout.all_offers_tab, container, false);
         System.out.println("ViewTab"+"AllOffer");
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-        allOfferListList = new ArrayList<>();
+        if (InternetCheck.isConnected(getActivity())) {
+
+            getAllOfferList();
+        } else {
+            showToastMessage("No internet connection");
+        }
+
+
+        /*allOfferListList = new ArrayList<>();
         allOfferListList.add(
                 new AllOfferList(
                         R.drawable.vim,
@@ -159,7 +183,7 @@ public class AlloffersTab extends Fragment implements OnBackClickListener {
                         "Get additional 1% off per unit on order between2 unit and 5 unit",
                         "Get additional 1% off per unit on order between2 unit and 5 unit",
                         "Get additional 1% off per unit on order between2 unit and 5 unit"
-                ));
+                ));*/
 //        AllofferAdapter adapter = new AllofferAdapter(getContext(), allOfferListList);
 //        recyclerView.setAdapter(adapter);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),
@@ -170,11 +194,29 @@ public class AlloffersTab extends Fragment implements OnBackClickListener {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        AllofferAdapter adapter = new AllofferAdapter(getContext(), allOfferListList);
-        recyclerView.setAdapter(adapter);
+
         return rootView;
     }
 
+    private void showToastMessage(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+    KProgressHUD hud;
+
+    void showHud() {
+        hud = KProgressHUD.create(getContext())
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Please wait")
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .show();
+    }
+
+    void hide() {
+        hud.dismiss();
+    }
     @Override
     public void onStart() {
         super.onStart();
@@ -220,5 +262,38 @@ public class AlloffersTab extends Fragment implements OnBackClickListener {
         //Toast.makeText(getContext(), "Do not exit", Toast.LENGTH_SHORT).show();
         return true;
     }
+    private void getAllOfferList() {
+        showHud();
+        ArrayList<AllOfferDataDetails> allOfferList = new ArrayList<>();
+        Call<AllOfferData> call= ApiNewClient.getInstance(getContext()).getAllOfferList(
+                SharedPreferencesClass.retrieveData(getContext(), Config.USER_ID)
+        );
+        call.enqueue(new Callback<AllOfferData>() {
+            @Override
+            public void onResponse(Call<AllOfferData> call, Response<AllOfferData> response) {
+                hide();
+                if (response.isSuccessful()){
+                    assert response.body() != null;
+                    if (response.body().getSuccess().equals("true")){
 
+                        allOfferList.clear();
+                        for (int i=0; i<response.body().getAllOfferDataDetails().size();i++){
+                            allOfferList.add(response.body().getAllOfferDataDetails().get(i));
+                        }
+                        AllofferAdapter adapter = new AllofferAdapter(getContext(), allOfferList);
+                        recyclerView.setAdapter(adapter);
+
+                    } else {
+                        //showToastMessage(response.body().getMessage());
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AllOfferData> call, Throwable t) {
+
+            }
+        });
+    }
 }
