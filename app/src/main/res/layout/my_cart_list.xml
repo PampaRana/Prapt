@@ -6,48 +6,120 @@
     android:layout_marginLeft="0dp"
     android:layout_marginRight="0dp"
     android:layout_width="match_parent"
-    android:layout_height="170dp">
-    <ImageView
-        android:id="@+id/wish_Image"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"/>
-    <TextView
-        android:id="@+id/decreaseInteger"
-        android:textStyle="bold"
-        android:layout_marginLeft="20dp"
-        android:background="@drawable/cart_box"
+    android:layout_height="180dp">
+  <RelativeLayout
+      android:id="@+id/rl_head"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <RelativeLayout
+          android:id="@+id/rl_img"
+          android:layout_marginLeft="20dp"
+          android:layout_marginTop="20dp"
+          android:layout_width="100dp"
+          android:layout_height="100dp">
+          <ImageView
+              android:id="@+id/wish_Image"
+              android:src="@drawable/offer_zone"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"/>
+          <androidx.core.widget.ContentLoadingProgressBar
+              android:id="@+id/content_loading_pb"
+              android:layout_centerVertical="true"
+              android:layout_centerHorizontal="true"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              style="?android:attr/progressBarStyleSmall"
+              android:layout_gravity="center_horizontal"/>
+
+      </RelativeLayout>
+
+
+      <RelativeLayout
+          android:layout_marginLeft="5dp"
+          android:layout_marginRight="5dp"
+          android:layout_marginTop="20dp"
+          android:layout_toRightOf="@+id/rl_img"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <TextView
+              android:id="@+id/cartName"
+              android:textSize="20dp"
+              android:textColor="@color/black"
+              android:text="Sunlight Eb Powder"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+          <TextView
+              android:id="@+id/cartGram"
+              android:layout_below="@+id/cartName"
+              android:layout_marginTop="10dp"
+              android:textSize="18dp"
+              android:textColor="@color/black"
+              android:text=""
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"/>
+
+          <RelativeLayout
+              android:layout_marginTop="10dp"
+              android:layout_below="@+id/cartGram"
+              android:id="@+id/rl_price"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+              <TextView
+                  android:id="@+id/cartPrice"
+                  android:text="₹59.63"
+                  android:layout_centerVertical="true"
+                  android:layout_alignParentLeft="true"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+              <TextView
+                  android:layout_toRightOf="@+id/cartPrice"
+                  android:id="@+id/discountText"
+                  android:layout_marginLeft="25dp"
+                  android:text="₹65"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"/>
+
+          </RelativeLayout>
+      </RelativeLayout>
+  </RelativeLayout>
+
+    <RelativeLayout
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/wish_Image"
-        android:gravity="center"
-        android:text="-"
-        android:layout_width="25dp"
-        android:layout_height="25dp"/>
-    <TextView
-        android:id="@+id/qty"
-        android:textStyle="bold"
-        android:layout_toRightOf="@+id/decreaseInteger"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/cart_box"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/wish_Image"
-        android:gravity="center"
-        android:text=""
-        android:layout_width="80dp"
-        android:layout_height="25dp"/>
-    <TextView
-        android:id="@+id/increaseInteger"
-        android:textStyle="bold"
-        android:layout_toRightOf="@+id/qty"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/cart_box"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/wish_Image"
-        android:gravity="center"
-        android:text="+"
-        android:layout_width="25dp"
-        android:layout_height="25dp"/>
+        android:layout_below="@+id/rl_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/decreaseInteger"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/cart_box"
+            android:gravity="center"
+            android:text="-"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+
+        <TextView
+            android:id="@+id/qty"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/decreaseInteger"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/cart_box"
+            android:gravity="center"
+            android:text=""
+            android:layout_width="80dp"
+            android:layout_height="25dp"/>
+        <TextView
+            android:id="@+id/increaseInteger"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/qty"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/cart_box"
+            android:gravity="center"
+            android:text="+"
+            android:layout_width="25dp"
+            android:layout_height="25dp"/>
+    </RelativeLayout>
     <ImageView
         android:id="@+id/deleteId"
         android:layout_marginRight="5dp"
@@ -56,41 +128,4 @@
         android:layout_alignParentEnd="true"
         android:layout_width="30dp"
         android:layout_height="30dp"/>
-      <TextView
-          android:id="@+id/cartName"
-          android:layout_marginTop="20dp"
-          android:textSize="20dp"
-          android:textColor="@color/black"
-          android:layout_toRightOf="@+id/wish_Image"
-          android:text="Sunlight Eb Powder"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/cartGram"
-        android:layout_below="@+id/cartName"
-        android:layout_marginTop="10dp"
-        android:textSize="18dp"
-        android:textColor="@color/black"
-        android:layout_toRightOf="@+id/wish_Image"
-        android:text="500g"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/cartPrice"
-        android:layout_toRightOf="@+id/wish_Image"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/cartGram"
-        android:text="₹59.63"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/discountText"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:text="₹65"
-        android:layout_toRightOf="@+id/cartPrice"
-        android:layout_below="@+id/cartGram"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 </RelativeLayout>

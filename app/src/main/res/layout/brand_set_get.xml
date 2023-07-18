@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:id="@+id/Ids"
+    android:layout_marginRight="5dp"
     android:layout_gravity="center"
     android:orientation="vertical">
     <androidx.core.widget.ContentLoadingProgressBar

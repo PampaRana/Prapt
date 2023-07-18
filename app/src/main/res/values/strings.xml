@@ -24,6 +24,7 @@
     <string name="increment">+</string>
     <string name="decrement">-</string>
     <string name="display">1</string>
+    <string name="noData">No data found</string>
     <string-array name="array_name">
         <item>Class</item>
         <item>Unit</item>

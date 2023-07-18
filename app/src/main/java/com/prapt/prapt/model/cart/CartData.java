@@ -16,7 +16,7 @@ public class CartData {
     @Expose
     private String message;
 
-    @SerializedName("data")
+    @SerializedName("det")
     @Expose
     private List<CartDataDetails> cartDetailsDataList = new ArrayList<>();
 

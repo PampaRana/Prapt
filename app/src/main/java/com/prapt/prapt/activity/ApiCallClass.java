@@ -41,9 +41,9 @@ public class ApiCallClass extends AppCompatActivity {
         getCheckPinCode();
        // getSubCategory();
         //getBrand();
-        getBrandWisePdt();
+        //getBrandWisePdt();
         getProduct();
-        addToCartItem();
+        //addToCartItem();
         //deleteCartItem();
         //getCartPdtLIst();
     }

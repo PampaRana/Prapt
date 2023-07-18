@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,6 +42,7 @@ public class WishlistViewAdapter extends RecyclerView.Adapter<WishlistViewAdapte
         Glide.with(mCtx)
                 .load(wishListSetGet.getWishImage())
                 .into(holder.wish_Image);
+        holder.content_loading_pb.setVisibility(View.GONE);
     }
     @Override
     public int getItemCount() {
@@ -50,6 +52,7 @@ public class WishlistViewAdapter extends RecyclerView.Adapter<WishlistViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
        private TextView wishName,wishGram,wishPrice,discountText;
        private ImageView wish_Image,deleteId;
+        ContentLoadingProgressBar content_loading_pb;
         public ViewHolder(View view) {
             super(view);
             wishName = (TextView) view.findViewById(R.id.wishName);
@@ -58,6 +61,9 @@ public class WishlistViewAdapter extends RecyclerView.Adapter<WishlistViewAdapte
             discountText = (TextView) view.findViewById(R.id.discountText);
             wish_Image = (ImageView) view.findViewById(R.id.wish_Image);
             deleteId = (ImageView) view.findViewById(R.id.deleteId);
+            content_loading_pb=view.findViewById(R.id.content_loading_pb);
+
+
         }
     }
 }

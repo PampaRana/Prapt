@@ -27,14 +27,18 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.ViewHolder> 
     private BrandActivity mCtx;
     private ArrayList<BrandDataDetails> brandSetGets;
     int listview;
-    public BrandAdapter(BrandActivity mCtx,  ArrayList<BrandDataDetails> brandSetGets) {
+    detailsListener detailsListener;
+
+    public BrandAdapter(BrandActivity mCtx,  ArrayList<BrandDataDetails> brandSetGets,
+                        detailsListener detailsListener) {
         this.mCtx = mCtx;
         this.brandSetGets = brandSetGets;
+        this.detailsListener = detailsListener;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.brand_set_get, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view,detailsListener);
 
     }
     @Override
@@ -59,6 +63,14 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.ViewHolder> 
                 .into(holder.profile_image)
         ;
 
+        holder.Ids.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                detailsListener.goToDetailsBrand(brandSetGets.get(position).getBrand_id());
+            }
+        });
+
+
        // holder.profile_image.setImageDrawable(mCtx.getResources().getDrawable(cat.getBrand_logo()));
     }
     @Override
@@ -70,14 +82,18 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.ViewHolder> 
         private TextView led_tv;
         private RelativeLayout Ids;
         ContentLoadingProgressBar content_loading_pb;
-
-        public ViewHolder(View view) {
+        detailsListener detailsListener;
+        public ViewHolder(View view,detailsListener detailsListener) {
             super(view);
+            this.detailsListener=detailsListener;
              led_tv = (TextView) view.findViewById(R.id.led_tv);
              profile_image = (CircleImageView) view.findViewById(R.id.profile_image);
              Ids = (RelativeLayout) view.findViewById(R.id.Ids);
             content_loading_pb=view.findViewById(R.id.content_loading_pb);
 
         }
+    }
+    public interface detailsListener{
+        void goToDetailsBrand(String brand_id);
     }
 }

@@ -106,36 +106,79 @@
                     android:text="Detergents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-                <TextView
-                    android:id="@+id/brandId"
-                    android:layout_below="@+id/cardId"
-                    android:textColor="#f88309"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:text="Brand"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
 
-                <View
-                    android:layout_width="325dp"
-                    android:layout_height="3dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="120sp"
-                    android:layout_toRightOf="@+id/brandId"
-                    android:background="#f88309" />
+
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rl_brand1"
+                    android:layout_below="@+id/cardId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/brandId"
+                        android:textColor="#f88309"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:text="Brand"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="3dp"
+                        android:layout_toRightOf="@+id/brandId"
+                        android:background="#f88309" />
+                </RelativeLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_below="@+id/brandId"
+                    android:layout_below="@+id/rl_brand1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
+                    android:layout_below="@+id/rl_brand1"
+                    android:id="@+id/tv_no_data1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="@string/noData"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+                <RelativeLayout
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rl_brand2"
+                    android:layout_below="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/brandId1"
+                        android:textColor="#f88309"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:layout_marginLeft="30dp"
+                        android:text="Sub-Category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <View
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="3dp"
+                        android:layout_toRightOf="@+id/brandId1"
+                        android:background="#f88309" />
+                </RelativeLayout>
+                <!--<TextView
                     android:id="@+id/brandId1"
                     android:layout_below="@+id/recyclerView"
                     android:textColor="#f88309"
@@ -155,15 +198,27 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="120sp"
                     android:layout_toRightOf="@+id/brandId1"
-                    android:background="#f88309" />
+                    android:background="#f88309" />-->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView1"
                     android:layout_marginTop="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:layout_below="@+id/brandId1"
+                    android:layout_below="@+id/rl_brand2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_below="@+id/rl_brand2"
+                    android:id="@+id/tv_no_data2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="@string/noData"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
             </RelativeLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>

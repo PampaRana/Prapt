@@ -78,7 +78,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         ProductDetailsListAdapter adapter = new ProductDetailsListAdapter(getApplication(), productDetailsListList);
         recyclerViews.setAdapter(adapter);
         recyclerViews.setLayoutManager(new LinearLayoutManager(getApplication(),
-                LinearLayoutManager.VERTICAL, true));
+                LinearLayoutManager.VERTICAL, false));
         PagerSnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(recyclerViews);
     }

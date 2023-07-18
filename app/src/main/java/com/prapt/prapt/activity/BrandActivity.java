@@ -1,7 +1,10 @@
 package com.prapt.prapt.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,11 +36,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BrandActivity extends AppCompatActivity {
+public class BrandActivity extends AppCompatActivity implements BrandAdapter.detailsListener{
     RecyclerView recyclerView, recyclerView1;
     TextView cardId;
     ArrayList<BrandDataDetails> brandList=new ArrayList<>();
     ArrayList<SubCategoryDataDetails> subCatList=new ArrayList<>();
+    TextView tv_no_data1,tv_no_data2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +50,9 @@ public class BrandActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView1 = findViewById(R.id.recyclerView1);
         cardId=findViewById(R.id.cardId);
+        tv_no_data1=findViewById(R.id.tv_no_data1);
+        tv_no_data2=findViewById(R.id.tv_no_data2);
+
         cardId.setText(getIntent().getStringExtra("brand_name"));
         if (InternetCheck.isConnected(this)) {
             showHud();
@@ -56,6 +63,7 @@ public class BrandActivity extends AppCompatActivity {
 
         } else {
 
+            Toast.makeText(this, "No internet connection", Toast.LENGTH_SHORT).show();
         }
         /*brandSetGetList.add(
                 new BrandSetGet(
@@ -151,14 +159,21 @@ public class BrandActivity extends AppCompatActivity {
                     subCatList.clear();
                     assert response.body() != null;
                     if (response.body().getSuccess().equals("true")){
-                        for (int i=0;i<response.body().getSubCategoryDetailsDataList().size(); i++){
-                            subCatList.add(response.body().getSubCategoryDetailsDataList().get(i));
+                        if (response.body().getSubCategoryDetailsDataList().size()>0) {
+                            tv_no_data2.setVisibility(View.GONE);
+                            recyclerView1.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < response.body().getSubCategoryDetailsDataList().size(); i++) {
+                                subCatList.add(response.body().getSubCategoryDetailsDataList().get(i));
 
+                            }
+                            RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
+                            recyclerView1.setLayoutManager(layoutManager);
+                            SubcategoriesAdapter adapter1 = new SubcategoriesAdapter(BrandActivity.this, subCatList);
+                            recyclerView1.setAdapter(adapter1);
+                        }else {
+                            tv_no_data2.setVisibility(View.VISIBLE);
+                            recyclerView1.setVisibility(View.GONE);
                         }
-                        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
-                        recyclerView1.setLayoutManager(layoutManager);
-                        SubcategoriesAdapter adapter1 = new SubcategoriesAdapter(BrandActivity.this, subCatList);
-                        recyclerView1.setAdapter(adapter1);
                     }
                 }
             }
@@ -167,6 +182,8 @@ public class BrandActivity extends AppCompatActivity {
             public void onFailure(Call<SubCategoryData> call, Throwable t) {
 
                 hide();
+                tv_no_data2.setVisibility(View.VISIBLE);
+                recyclerView1.setVisibility(View.GONE);
             }
         });
     }
@@ -185,14 +202,21 @@ public class BrandActivity extends AppCompatActivity {
                     brandList.clear();
                     assert response.body() != null;
                     if (response.body().getSuccess().equals("true")){
-                        for (int i=0;i<response.body().getBrandDetailsDataList().size(); i++){
+                        if (response.body().getBrandDetailsDataList().size()>0) {
+                            tv_no_data1.setVisibility(View.GONE);
+                            recyclerView.setVisibility(View.VISIBLE);
+                            for (int i = 0; i < response.body().getBrandDetailsDataList().size(); i++) {
 
-                            brandList.add(response.body().getBrandDetailsDataList().get(i));
+                                brandList.add(response.body().getBrandDetailsDataList().get(i));
+                            }
+                            BrandAdapter adapter = new BrandAdapter(BrandActivity.this, brandList, BrandActivity.this::goToDetailsBrand);
+                            recyclerView.setAdapter(adapter);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(getApplication(),
+                                    LinearLayoutManager.HORIZONTAL, false));
+                        }else {
+                            tv_no_data1.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
                         }
-                        BrandAdapter adapter = new BrandAdapter(BrandActivity.this, brandList);
-                        recyclerView.setAdapter(adapter);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getApplication(),
-                                LinearLayoutManager.HORIZONTAL, true));
                         //PagerSnapHelper snapHelper = new PagerSnapHelper();
                        // snapHelper.attachToRecyclerView(recyclerView);
                     }
@@ -203,6 +227,8 @@ public class BrandActivity extends AppCompatActivity {
             public void onFailure(Call<BrandData> call, Throwable t) {
 
                 hide();
+                tv_no_data1.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
             }
         });
     }
@@ -221,5 +247,14 @@ public class BrandActivity extends AppCompatActivity {
 
     void hide() {
         hud.dismiss();
+    }
+
+    @Override
+    public void goToDetailsBrand(String brand_id) {
+        Intent intent=new Intent(new Intent(BrandActivity.this, ProductActivity.class));
+        intent.putExtra("brand_id",brand_id);
+        startActivity(intent);
+
+
     }
 }
